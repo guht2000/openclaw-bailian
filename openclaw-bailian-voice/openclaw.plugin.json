@@ -1,12 +1,17 @@
 {
   "id": "bailian-voice",
-  "categories": ["voice"],
+  "name": "Bailian Realtime Voice",
+  "categories": [
+    "voice"
+  ],
   "activation": {
     "onStartup": true
   },
   "enabledByDefault": true,
   "contracts": {
-    "realtimeVoiceProviders": ["bailian-voice"]
+    "realtimeVoiceProviders": [
+      "bailian-voice"
+    ]
   },
   "configContracts": {
     "secretInputs": {
@@ -26,24 +31,53 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "source": { "type": "string", "enum": ["env", "file", "exec", "store"] },
-          "provider": { "type": "string" },
-          "id": { "type": "string" }
+          "source": {
+            "type": "string",
+            "enum": [
+              "env",
+              "file",
+              "exec",
+              "store"
+            ]
+          },
+          "provider": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
         },
-        "required": ["source", "provider", "id"]
+        "required": [
+          "source",
+          "provider",
+          "id"
+        ]
       },
       "secretInput": {
         "anyOf": [
-          { "type": "string", "minLength": 1 },
-          { "$ref": "#/$defs/secretRef" }
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "$ref": "#/$defs/secretRef"
+          }
         ]
       }
     },
     "properties": {
-      "apiKey": { "$ref": "#/$defs/secretInput" },
-      "baseUrl": { "type": "string" },
-      "model": { "type": "string" },
-      "voice": { "type": "string" }
+      "apiKey": {
+        "$ref": "#/$defs/secretInput"
+      },
+      "baseUrl": {
+        "type": "string"
+      },
+      "model": {
+        "type": "string"
+      },
+      "voice": {
+        "type": "string"
+      }
     }
   },
   "uiHints": {
@@ -73,7 +107,12 @@
       "id": "bailian-voice",
       "title": "Bailian realtime voice",
       "order": 10,
-      "properties": ["apiKey", "model", "voice", "baseUrl"]
+      "properties": [
+        "apiKey",
+        "model",
+        "voice",
+        "baseUrl"
+      ]
     }
   ],
   "description": "Alibaba Bailian Qwen-Audio-Realtime voice for Talk (realtime voice)"

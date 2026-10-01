@@ -1,12 +1,17 @@
 {
   "id": "bailian-realtime",
-  "categories": ["voice"],
+  "name": "Bailian Realtime Transcription",
+  "categories": [
+    "voice"
+  ],
   "activation": {
     "onStartup": true
   },
   "enabledByDefault": true,
   "contracts": {
-    "realtimeTranscriptionProviders": ["bailian"]
+    "realtimeTranscriptionProviders": [
+      "bailian"
+    ]
   },
   "configContracts": {
     "secretInputs": {
@@ -26,24 +31,57 @@
         "type": "object",
         "additionalProperties": false,
         "properties": {
-          "source": { "type": "string", "enum": ["env", "file", "exec", "store"] },
-          "provider": { "type": "string" },
-          "id": { "type": "string" }
+          "source": {
+            "type": "string",
+            "enum": [
+              "env",
+              "file",
+              "exec",
+              "store"
+            ]
+          },
+          "provider": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          }
         },
-        "required": ["source", "provider", "id"]
+        "required": [
+          "source",
+          "provider",
+          "id"
+        ]
       },
       "secretInput": {
         "anyOf": [
-          { "type": "string", "minLength": 1 },
-          { "$ref": "#/$defs/secretRef" }
+          {
+            "type": "string",
+            "minLength": 1
+          },
+          {
+            "$ref": "#/$defs/secretRef"
+          }
         ]
       }
     },
     "properties": {
-      "apiKey": { "$ref": "#/$defs/secretInput" },
-      "url": { "type": "string" },
-      "model": { "type": "string" },
-      "inputEncoding": { "type": "string", "enum": ["g711_ulaw", "pcm16"] }
+      "apiKey": {
+        "$ref": "#/$defs/secretInput"
+      },
+      "url": {
+        "type": "string"
+      },
+      "model": {
+        "type": "string"
+      },
+      "inputEncoding": {
+        "type": "string",
+        "enum": [
+          "g711_ulaw",
+          "pcm16"
+        ]
+      }
     }
   },
   "uiHints": {
@@ -73,7 +111,12 @@
       "id": "bailian-realtime",
       "title": "Bailian realtime transcription",
       "order": 10,
-      "properties": ["apiKey", "model", "inputEncoding", "url"]
+      "properties": [
+        "apiKey",
+        "model",
+        "inputEncoding",
+        "url"
+      ]
     }
   ],
   "description": "Alibaba Bailian realtime transcription for Talk (dictation / realtime)"
