@@ -1,0 +1,80 @@
+{
+  "id": "bailian-realtime",
+  "categories": ["voice"],
+  "activation": {
+    "onStartup": true
+  },
+  "enabledByDefault": true,
+  "contracts": {
+    "realtimeTranscriptionProviders": ["bailian"]
+  },
+  "configContracts": {
+    "secretInputs": {
+      "paths": [
+        {
+          "path": "apiKey",
+          "expected": "string"
+        }
+      ]
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "$defs": {
+      "secretRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source": { "type": "string", "enum": ["env", "file", "exec", "store"] },
+          "provider": { "type": "string" },
+          "id": { "type": "string" }
+        },
+        "required": ["source", "provider", "id"]
+      },
+      "secretInput": {
+        "anyOf": [
+          { "type": "string", "minLength": 1 },
+          { "$ref": "#/$defs/secretRef" }
+        ]
+      }
+    },
+    "properties": {
+      "apiKey": { "$ref": "#/$defs/secretInput" },
+      "url": { "type": "string" },
+      "model": { "type": "string" },
+      "inputEncoding": { "type": "string", "enum": ["g711_ulaw", "pcm16"] }
+    }
+  },
+  "uiHints": {
+    "apiKey": {
+      "label": "DashScope API key",
+      "help": "Bailian / DashScope API key. Prefer a SecretRef so the value stays out of the config file (fallback: DASHSCOPE_API_KEY env var).",
+      "sensitive": true
+    },
+    "model": {
+      "label": "ASR model",
+      "help": "Override the default fun-asr-realtime model.",
+      "advanced": true
+    },
+    "inputEncoding": {
+      "label": "Input audio encoding",
+      "help": "Encoding of incoming audio. Default g711_ulaw.",
+      "advanced": true
+    },
+    "url": {
+      "label": "Realtime ASR endpoint",
+      "help": "WebSocket endpoint override.",
+      "advanced": true
+    }
+  },
+  "configGroups": [
+    {
+      "id": "bailian-realtime",
+      "title": "Bailian realtime transcription",
+      "order": 10,
+      "properties": ["apiKey", "model", "inputEncoding", "url"]
+    }
+  ],
+  "description": "Alibaba Bailian realtime transcription for Talk (dictation / realtime)"
+}

@@ -1,0 +1,80 @@
+{
+  "id": "bailian-voice",
+  "categories": ["voice"],
+  "activation": {
+    "onStartup": true
+  },
+  "enabledByDefault": true,
+  "contracts": {
+    "realtimeVoiceProviders": ["bailian-voice"]
+  },
+  "configContracts": {
+    "secretInputs": {
+      "paths": [
+        {
+          "path": "apiKey",
+          "expected": "string"
+        }
+      ]
+    }
+  },
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "$defs": {
+      "secretRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "source": { "type": "string", "enum": ["env", "file", "exec", "store"] },
+          "provider": { "type": "string" },
+          "id": { "type": "string" }
+        },
+        "required": ["source", "provider", "id"]
+      },
+      "secretInput": {
+        "anyOf": [
+          { "type": "string", "minLength": 1 },
+          { "$ref": "#/$defs/secretRef" }
+        ]
+      }
+    },
+    "properties": {
+      "apiKey": { "$ref": "#/$defs/secretInput" },
+      "baseUrl": { "type": "string" },
+      "model": { "type": "string" },
+      "voice": { "type": "string" }
+    }
+  },
+  "uiHints": {
+    "apiKey": {
+      "label": "DashScope API key",
+      "help": "Bailian / DashScope API key. Prefer a SecretRef so the value stays out of the config file (fallback: DASHSCOPE_API_KEY env var).",
+      "sensitive": true
+    },
+    "model": {
+      "label": "Realtime voice model",
+      "help": "Override the default qwen-audio-3.1-realtime-plus model.",
+      "advanced": true
+    },
+    "voice": {
+      "label": "Voice",
+      "help": "Default voice id, for example longanqian.",
+      "advanced": true
+    },
+    "baseUrl": {
+      "label": "Realtime voice endpoint",
+      "help": "WebSocket endpoint override.",
+      "advanced": true
+    }
+  },
+  "configGroups": [
+    {
+      "id": "bailian-voice",
+      "title": "Bailian realtime voice",
+      "order": 10,
+      "properties": ["apiKey", "model", "voice", "baseUrl"]
+    }
+  ],
+  "description": "Alibaba Bailian Qwen-Audio-Realtime voice for Talk (realtime voice)"
+}

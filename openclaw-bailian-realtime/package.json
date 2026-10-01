@@ -1,0 +1,53 @@
+{
+  "name": "@guht2000/openclaw-bailian-realtime",
+  "version": "0.1.0",
+  "description": "Bailian (DashScope) realtime speech-to-text for OpenClaw Talk",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "openclaw",
+    "openclaw-plugin",
+    "bailian",
+    "dashscope",
+    "realtime",
+    "voice",
+    "talk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/guht2000/openclaw-bailian"
+  },
+  "homepage": "https://github.com/guht2000/openclaw-bailian#readme",
+  "bugs": {
+    "url": "https://github.com/guht2000/openclaw-bailian/issues"
+  },
+  "files": [
+    "*.js",
+    "openclaw.plugin.json",
+    "README.md"
+  ],
+  "peerDependencies": {
+    "openclaw": ">=2026.9.7"
+  },
+  "peerDependenciesMeta": {
+    "openclaw": {
+      "optional": true
+    }
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ],
+    "install": {
+      "clawhubSpec": "clawhub:@guht2000/openclaw-bailian-realtime",
+      "minHostVersion": ">=2026.9.7"
+    },
+    "compat": {
+      "pluginApi": ">=2026.9.7"
+    },
+    "release": {
+      "publishToClawHub": true,
+      "publishToNpm": false
+    }
+  }
+}
